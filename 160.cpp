@@ -1,3 +1,4 @@
+//将长的链表移动长度差的距离，然后同时移动两个链表，找到第一个相等的节点
 /**
  * Definition for singly-linked list.
  * struct ListNode {
