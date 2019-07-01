@@ -22,6 +22,7 @@ class Solution {
       return "";
     int min_len = getMinLength(strs);
     int left = 0;
+    int bug = 0;
     int right = min_len - 1;
     String res = "";
     while (left <= right) {
