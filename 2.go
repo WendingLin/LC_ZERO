@@ -11,7 +11,7 @@ func emptycond (l *ListNode) int{
         l = l.Next
         return val   
     }else{
-        return 0
+        return 0;
     }
 }
 
