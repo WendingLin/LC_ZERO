@@ -1,23 +1,27 @@
 class Solution {
-    private void backtracking(List<List<Integer>> res, List<Integer> temp, int[] nums){
+    private void backtracking(int[] nums, List<List<Integer>> res, List<Integer> temp, boolean[] used){
         if(temp.size()==nums.length){
             res.add(new ArrayList<>(temp));
             return;
         }
+        
         for(int i = 0; i < nums.length; i++){
-            if(temp.contains(nums[i])) continue;
+            if(used[i] || i>0 && nums[i]==nums[i-1] && !used[i-1]) continue;
             temp.add(nums[i]);
-            backtracking(res, temp, nums);
+            used[i] = true;
+            backtracking(nums, res, temp, used);
+            used[i] = false;
             temp.remove(temp.size()-1);
         }
     }
-    public List<List<Integer>> permute(int[] nums) {
-         if(nums==null) return null;
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        if(nums==null) return null;
         
+        Arrays.sort(nums);
         List<List<Integer>> res = new ArrayList<List<Integer>>();
 
-        backtracking(res, new ArrayList<Integer>(), nums);
+        backtracking(nums, res, new ArrayList<Integer>(), new boolean[nums.length]);
 
-        return res;        
+        return res;
     }
 }
