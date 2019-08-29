@@ -9,10 +9,15 @@ public class Solution extends Reader4 {
      * @return    The number of actual characters read
      */
     public int read(char[] buf, int n) {
-        int count  = 0;
-        while(count<n && count%4==0){
-            count+=read4(buf);
+        int pos = 0;
+        for(int i = 0; i<n; i+=4){
+            char[] temp = new char[4];
+            int len = read4(temp);
+            for(int j = 0; j<len && i+j<n; j++){
+                buf[i+j] = temp[j];
+            }
+            if(len<4) return Math.min(i+len, n);
         }
-        return count;
+        return n;
     }
 }
